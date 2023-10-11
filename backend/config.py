@@ -1,7 +1,7 @@
 from orjson import loads, dumps, OPT_INDENT_2
 
-from os import urandom
-from os.path import isfile
+from os import makedirs, urandom
+from os.path import isdir, isfile
 
 __EXAMPLE_CONFIG = {
     "host": "0.0.0.0",
@@ -24,4 +24,7 @@ SQL_URL: str = config.get("sql", "sqlite+aiosqlite:///./data.sqlite")
 KEY: str = config.get("key", __EXAMPLE_CONFIG["key"])
 DATA_DIR: str = config.get("data_dir", "data")
 DEBUG: bool = config.get("debug", False)
+
+if not isdir(f"{DATA_DIR}/image"):
+    makedirs(f"{DATA_DIR}/image")
 # SQL_URL = "postgresql://user:password@postgresserver/db"

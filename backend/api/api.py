@@ -6,16 +6,18 @@ from config import HOST, PORT
 
 from .routers import (
     article_router,
+    image_router,
     oauth_router,
     restaurant_router,
     user_router,
 )
 
 app = FastAPI(
-    root_path="",
+    root_path="/api/v1",
     version="1.0.0",
 )
 app.include_router(article_router)
+app.include_router(image_router)
 app.include_router(oauth_router)
 app.include_router(restaurant_router)
 app.include_router(user_router)
